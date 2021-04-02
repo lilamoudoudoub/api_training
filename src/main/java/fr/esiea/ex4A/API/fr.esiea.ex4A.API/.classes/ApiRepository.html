@@ -1,0 +1,129 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ApiRepository</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">fr.esiea.ex4A.API</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ApiRepository (fr.esiea.ex4A.API)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ApiRepository</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    66,7%
+  </span>
+  <span class="absValue">
+    (4/ 6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    47,1%
+  </span>
+  <span class="absValue">
+    (8/ 17)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package fr.esiea.ex4A.API;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+<i>4</i>&nbsp;import org.springframework.boot.test.context.SpringBootTest;
+<i>5</i>&nbsp;import org.springframework.stereotype.Repository;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import java.util.ArrayList;
+<i>8</i>&nbsp;import java.util.HashMap;
+<i>9</i>&nbsp;import java.util.Map;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;@Repository
+<b class="fc"><i>13</i>&nbsp;public class ApiRepository {</b>
+<b class="fc"><i>14</i>&nbsp;    final HashMap&lt;String, UserData&gt; userList = new HashMap&lt;&gt;();</b>
+<b class="fc"><i>15</i>&nbsp;    final HashMap&lt;String, AgifyUtilisateur&gt; userAge = new HashMap&lt;&gt;();</b>
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;    int NbrofUsers(){
+<b class="fc"><i>18</i>&nbsp;        return this.userList.size();</b>
+<i>19</i>&nbsp;    }
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;    void addNewUser(UserData userData, AgifyUtilisateur userAge){
+<b class="fc"><i>22</i>&nbsp;        this.userList.put(userData.getUserId(), userData);</b>
+<b class="fc"><i>23</i>&nbsp;        this.userAge.put(userData.getUserId(), userAge);</b>
+<b class="fc"><i>24</i>&nbsp;    }</b>
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;    boolean seeIfUserExists(UserData datauser){
+<b class="fc"><i>27</i>&nbsp;        return this.userList.containsKey(datauser.getUserId());</b>
+<i>28</i>&nbsp;    }
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;    UserData getUser(String userName, String countryId){
+<b class="nc"><i>31</i>&nbsp;        return this.userList.get(userName.concat(countryId));</b>
+<i>32</i>&nbsp;    }
+<i>33</i>&nbsp;
+<i>34</i>&nbsp;    ArrayList&lt;UserData&gt; matchUser(UserData userData){
+<b class="nc"><i>35</i>&nbsp;        ArrayList&lt;UserData&gt; matchingUsers = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i>36</i>&nbsp;        for(Map.Entry&lt;String, AgifyUtilisateur&gt; userEntry : this.userAge.entrySet()){</b>
+<b class="nc"><i>37</i>&nbsp;            if(Math.abs(userEntry.getValue().getAge() - this.userAge.get(userData.getUserId()).getAge()) &lt;= 4){</b>
+<b class="nc"><i>38</i>&nbsp;                UserData possiblyMatchingUser = this.userList.get(userEntry.getValue().getIduser());</b>
+<b class="nc"><i>39</i>&nbsp;                if(possiblyMatchingUser.getSex().equals(userData.getSexPref()) &amp;&amp; userData.getSex().equals(possiblyMatchingUser.getSexPref())) {</b>
+<b class="nc"><i>40</i>&nbsp;                    matchingUsers.add(this.userList.get(userEntry.getValue().getIduser()));</b>
+<i>41</i>&nbsp;                }
+<i>42</i>&nbsp;            }
+<b class="nc"><i>43</i>&nbsp;        }</b>
+<b class="nc"><i>44</i>&nbsp;        return matchingUsers;</b>
+<i>45</i>&nbsp;    }
+<i>46</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-04-02 19:52</div>
+</div>
+</body>
+</html>
